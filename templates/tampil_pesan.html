@@ -1,0 +1,109 @@
+{% extends 'base.html' %} {% block content %}
+
+<section id="daftar-barang">
+  <div id="fh5co-feature-product" class="fh5co-section-gray" style="padding: 5em">
+    <div class="col-md-12 text-center heading-section" style="margin-top: 0%">
+      <h3>Data Pesan</h3>
+    </div>
+    <section id="table-crud">
+      <div class="container">
+        <div class="table-wrapper">
+          <div class="table-title">
+            <div class="row">
+              <div class="col-sm-6">
+                <table>
+                  <tr>
+                    <td><input type="text" class="form-control" placeholder="Cari" style="width: 120%" /></td>
+                    <td>
+                      <button type="button" class="btn btn-primary icon-search3" style="margin-left: 45px">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-sm-6" style="padding-left: 23%">
+                <!-- ADD && DELETE BUTTON -->
+                <a href="/kontak" class="btn btn-success" data-toggle="modal" style="background-color: #045f50"> <span>Tambah Pesan</span></a>
+                <a href="" class="btn btn-danger" data-toggle="modal" data-target="#hapus_psn-{{ Pesan.id }}" style="background-color: rgb(144, 0, 0)"><span>Hapus</span></a>
+                <!-- END - ADD && DELETE BUTTON -->
+              </div>
+            </div>
+            {% for message in messages %} {% if message %}
+            <div class="alert alert-success">{{ message }}</div>
+            {% endif %} {% endfor %}
+          </div>
+          <table class="table table-striped table-hover" style="margin-top: 20px">
+            <thead>
+              <tr>
+                <th>
+                  <span class="custom-checkbox">
+                    <input type="checkbox" id="selectAll" />
+                    <label for="selectAll"></label>
+                  </span>
+                </th>
+                <th>Id</th>
+                <th>Nama</th>
+                <th>E-mail</th>
+                <th>Pesan</th>
+                <th>Timestamp</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for Pesan in pesans %}
+              <tr class="{{ row_class }}">
+                <td>
+                  <span class="custom-checkbox">
+                    <input type="checkbox" id="checkbox1" name="options[]" value="1" />
+                    <label for="checkbox1"></label>
+                  </span>
+                </td>
+                <td><a href="{% url 'ubah_psn' Pesan.id %}">{{ Pesan.id }}</a></td>
+                <td>{{ Pesan.nama }}</td>
+                <td>{{ Pesan.email }}</td>
+                <td class="data-panjang">{{ Pesan.pesan }}</td>
+                <td>{{ Pesan.waktu_posting }}</td>
+                <td>
+                  <a href="{% url 'ubah_psn' Pesan.id %}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                  <!-- DELETE BUTTON -->
+                  <a href="" class="delete" data-toggle="modal" data-target="#hapus_psn-{{ Pesan.id }}"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                  <div class="modal fade" id="hapus_psn-{{ Pesan.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Yakin akan dihapus?</h1>                        
+                        </div>
+                        <div class="modal-body">Nama Pengirim : {{ Pesan.nama }}</div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data1-dismiss="modal">Batal</button>
+                          <a href="{% url 'hapus_psn' Pesan.id %}" class="btn btn-danger">Yakin</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END - DELETE BUTTON -->
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="clearfix">
+            <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+            <ul class="pagination">
+              <li class="page-item disabled"><a href="#"><</a></li>
+              <li class="page-item"><a href="#" class="page-link" style="color: #045f50">1</a></li>
+              <li class="page-item"><a href="#" class="page-link" style="color: #045f50">2</a></li>
+              <li class="page-item active"><a href="#" class="page-link" style="background-color: #045f50; border-color: #ddd">3</a></li>
+              <li class="page-item"><a href="#" class="page-link" style="color: #045f50">4</a></li>
+              <li class="page-item"><a href="#" class="page-link" style="color: #045f50">5</a></li>
+              <li class="page-item"><a href="#" class="page-link" style="color: #045f50">></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+{% endblock %}

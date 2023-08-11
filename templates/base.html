@@ -1,0 +1,130 @@
+{% load active_link_tags %}
+
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <style>
+      table {
+        /* display: block; */
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .col-batas {
+        width: 10px;
+      }
+    </style>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Lindungi Hutan | {{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+    {% include 'link.html' %}
+  </head>
+  <body>
+    <div id="fh5co-wrapper">
+      <div id="fh5co-page">
+        <section id="header-top">
+          <div class="header-top">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 col-sm-6 text-left fh5co-link">
+                  <a href="#">Magang Alam</a>
+                  <a href="#">Merchandise</a>
+                  <a href="#">FAQ</a>                                  
+                </div>
+                <div class="col-md-6 col-sm-6 text-right fh5co-social">
+                  <a href="/Vpsn">Data Pesan</a>
+                  <a href="/Vcollab">Data CollaboraTree</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="header">
+          <header id="fh5co-header-section" class="sticky-banner">
+            <div class="container">
+              <div class="nav-header">
+                <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+                <h1 id="fh5co-logo"><a href="/">LINDUNGI HUTAN</a></h1>
+                <!-- START #fh5co-menu-wrap -->
+                <nav id="fh5co-menu-wrap" role="navigation">
+                  {% with request.resolver_match.url_name as url_name %}
+                  <ul class="sf-menu" id="fh5co-primary-menu">
+                    <li class="{% if url_name == 'home' %}active{% endif %}">
+                      <a href="/">Beranda</a>
+                    </li>
+                    <li class="dropdown {% if url_name in 'relawan, partner, collaboratree, csr, petani' %}active{% endif %}">
+                      <a href="#" class="fh5co-sub-ddown">Partner</a>
+                      <ul class="fh5co-sub-menu">
+                        <li><a href="#">Relawan</a></li>
+                        <li><a href="#">Partner</a></li>
+                        <li class="{% if url_name == 'collaboratree' %}active{% endif %}">
+                          <a href="/collaboratree">CollaboraTree</a>
+                        </li>
+                        <li><a href="#">CSR</a></li>
+                        <li><a href="#">Petani</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#" class="fh5co-sub-ddown">Projek</a>
+                      <ul class="fh5co-sub-menu">
+                        <li><a href="#">Kado Bumi</a></li>
+                        <li><a href="#">Kampanye Alam</a></li>
+                        <li><a href="#">Hutan Merdeka</a></li>
+                      </ul>
+                    </li>
+                    <li class="{% if url_name == 'about' %}active{% endif %}">
+                      <a href="/tentang-kami">Tentang Kami</a>
+                    </li>
+                    <li class="{% if url_name == 'blog' %}active{% endif %}">
+                      <a href="/blog">Blog</a>
+                    </li>
+                    <li class="{% if url_name == 'contact' %}active{% endif %}">
+                      <a href="/kontak">Kontak</a>
+                    </li>
+                  </ul>
+                  {% endwith %}
+                </nav>
+              </div>
+            </div>
+          </header>
+        </section>
+        <div id="fh5co-wrapper">
+          <div id="fh5co-page">{% block content %} {% endblock %}</div>
+        </div>
+
+        <section id="footer">
+          <footer>
+            <div id="footer">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-3 text-center">
+                    <p class="fh5co-social-icons">
+                      <a href="https://twitter.com/lindungihutan/"><i class="icon-twitter2"></i></a>
+                      <a href="https://www.facebook.com/lindungihutandotcom/"><i class="icon-facebook2"></i></a>
+                      <a href="https://www.instagram.com/lindungihutan/"><i class="icon-instagram"></i></a>
+                      <a href="https://www.youtube.com/lindungihutan"><i class="icon-youtube"></i></a>
+                    </p>
+                    <p>Website ini dibuat untuk memenuhi UAS SSP <br />Made with <i class="icon-heart3"></i> by Rizqi Hasanuddin 21201123</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </section>
+      </div>
+      <!-- END fh5co-page -->
+    </div>
+    <!-- END fh5co-wrapper -->
+  </body>
+</html>
